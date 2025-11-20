@@ -50,7 +50,6 @@
             this.listBoxEntries.Name = "listBoxEntries";
             this.listBoxEntries.Size = new System.Drawing.Size(333, 384);
             this.listBoxEntries.TabIndex = 0;
-            this.listBoxEntries.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
             // listBoxExercises
             // 
@@ -60,7 +59,6 @@
             this.listBoxExercises.Name = "listBoxExercises";
             this.listBoxExercises.Size = new System.Drawing.Size(450, 384);
             this.listBoxExercises.TabIndex = 1;
-            this.listBoxExercises.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged_1);
             // 
             // buttonAddEntry
             // 
@@ -79,7 +77,6 @@
             this.buttonRemoveEntry.TabIndex = 3;
             this.buttonRemoveEntry.Text = "Remove day";
             this.buttonRemoveEntry.UseVisualStyleBackColor = true;
-            this.buttonRemoveEntry.Click += new System.EventHandler(this.button1_Click);
             // 
             // buttonAddExercise
             // 
@@ -107,7 +104,6 @@
             this.buttonMarkCompleted.TabIndex = 6;
             this.buttonMarkCompleted.Text = "Mark day completed";
             this.buttonMarkCompleted.UseVisualStyleBackColor = true;
-            this.buttonMarkCompleted.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // progressBar1
             // 
@@ -123,7 +119,6 @@
             this.labelOverallProgress.Size = new System.Drawing.Size(154, 35);
             this.labelOverallProgress.TabIndex = 8;
             this.labelOverallProgress.Text = "Overall progress: 0%";
-            this.labelOverallProgress.Click += new System.EventHandler(this.label1_Click);
             // 
             // labelVolumeCaption
             // 
@@ -174,7 +169,6 @@
             this.Controls.Add(this.listBoxEntries);
             this.Name = "MainForm";
             this.Text = "MainForm";
-            this.Load += new System.EventHandler(this.MainForm_Load_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 
