@@ -13,8 +13,8 @@ namespace Gym_Workout_Diary___Tracker.Domain
     // ------------------------------------------------------------
 
     /// <summary>
-    /// Домейн модел на едно конкретно упражнение в тренировката
-    /// Например: Bench Press, Squat, Deadlift и тн
+    /// модел на едно конкретно упражнение в тренировката
+    /// например Bench Press, Squat, Deadlift и тн
     /// </summary>
     public class Exercise
     {
@@ -24,7 +24,7 @@ namespace Gym_Workout_Diary___Tracker.Domain
         public double Weight { get; set; }
 
         /// <summary>
-        /// Създава ново упражнение с име, брой серии, повторения и тежест
+        /// създава ново упражнение с име, брой серии, повторения и тежест
         /// </summary>
         public Exercise(string name, int sets, int reps, double weight)
         {
@@ -35,7 +35,7 @@ namespace Gym_Workout_Diary___Tracker.Domain
         }
 
         /// <summary>
-        /// Изчислява тренировъчния обем за това упражнение: sets * reps * weight
+        /// метод, който изчислява тренировъчния обем за това упражнение: sets * reps * weight
         /// </summary>
         /// <returns>Общия обем като число от тип double</returns>
         public double GetVolume()
@@ -45,10 +45,13 @@ namespace Gym_Workout_Diary___Tracker.Domain
         }
 
         /// <summary>
-        /// Метод за преобразуване на резултата в низ,
-        /// използван за показване в списъци в потребителския интерфейс
+        /// ToString метод за преобразуване на резултата в текстов вид
+        /// използва се при показване на обекта в списъци в UI (примерно ListBox)
         /// </summary>
-        /// <returns>Низ с име, серии, повторения и тежест</returns>
+        /// <returns> 
+        /// низ във формата: "име - (серии)x(повторения) @ (тежест)kg" 
+        /// пример: "Bench Press - 4x8 @ 60kg"
+        /// </returns>
         public override string ToString()
         {
             string description = Name + " - " + Sets + "x" + Reps + " @ " + Weight + "kg";

@@ -23,7 +23,7 @@ namespace Gym_Workout_Diary___Tracker.Domain
         Planned,
 
         /// <summary>
-        /// Тренировката е изпълнена и записът е завършен
+        /// тренировката е изпълнена и записът е завършен
         /// </summary>
         Completed
     }
