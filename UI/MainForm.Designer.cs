@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.listBoxEntries = new System.Windows.Forms.ListBox();
             this.listBoxExercises = new System.Windows.Forms.ListBox();
             this.buttonAddEntry = new System.Windows.Forms.Button();
@@ -168,8 +169,9 @@
             this.Controls.Add(this.buttonAddEntry);
             this.Controls.Add(this.listBoxExercises);
             this.Controls.Add(this.listBoxEntries);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
-            this.Text = "MainForm";
+            this.Text = "Gym Workout Diary & Tracker";
             this.ResumeLayout(false);
             this.PerformLayout();
 

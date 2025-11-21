@@ -1,5 +1,6 @@
 ﻿using Gym_Workout_Diary___Tracker.Domain;
 using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -28,7 +29,6 @@ namespace Gym_Workout_Diary___Tracker.UI
             // този метод се намира в MainForm.Designer.cs
             // и създава всички визуални елементи
             InitializeComponent();
-
             labelOverallProgress.AutoSize = true;
 
             // празен дневник
