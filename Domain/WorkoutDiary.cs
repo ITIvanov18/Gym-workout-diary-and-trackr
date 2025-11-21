@@ -134,23 +134,23 @@ namespace Gym_Workout_Diary___Tracker.Domain
         {
             int[] counts = new int[7];
 
-            foreach (WorkoutEntry entry in Entries)
+            foreach (var entry in Entries)
             {
-                int index;
+                // взима се деня от седмицата
+                DayOfWeek day = entry.Date.DayOfWeek;
 
-                if (entry.Date.DayOfWeek == DayOfWeek.Sunday)
+                // превръщам Monday(1) в 0, Sunday(0) в 6
+                int index;
+                if (day == DayOfWeek.Sunday)
                 {
                     index = 6;
                 }
                 else
                 {
-                    index = ((int)entry.Date.DayOfWeek) - 1;
+                    index = (int)day - 1;
                 }
 
-                if (index >= 0 && index < counts.Length)
-                {
-                    counts[index] = counts[index] + 1;
-                }
+                counts[index]++;
             }
 
             return counts;

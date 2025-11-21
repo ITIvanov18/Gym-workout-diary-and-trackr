@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Gym_Workout_Diary___Tracker.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,49 +14,88 @@ namespace Gym_Workout_Diary___Tracker.Domain
     // ------------------------------------------------------------
 
     /// <summary>
-    /// модел на едно конкретно упражнение в тренировката
-    /// например Bench Press, Squat, Deadlift и тн
+    /// базов абстрактен клас за всякакъв вид упражнения (например Bench Press, Squat, Deadlift)
+    /// демонстрира наследяване и полиморфизъм
     /// </summary>
-    public class Exercise
+    public abstract class Exercise
     {
         public string Name { get; set; }
+
+        public Exercise(string name)
+        {
+            Name = name;
+        }
+
+        /// <summary>
+        /// абстрактен метод - всеки наследник трябва сам да каже как си смята обема
+        /// за силови упражнения е кг * повторения, за кардио е минути
+        /// </summary>
+        public abstract double GetVolume();
+
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
+    /// <summary>
+    /// клас за силови упражнения (тежести, повторения, серии)
+    /// </summary>
+    public class StrengthExercise : Exercise
+    {
         public int Sets { get; set; }
         public int Reps { get; set; }
         public double Weight { get; set; }
 
-        /// <summary>
-        /// създава ново упражнение с име, брой серии, повторения и тежест
-        /// </summary>
-        public Exercise(string name, int sets, int reps, double weight)
+        public StrengthExercise(string name, int sets, int reps, double weight)
+            : base(name) // Извиква конструктора на базовия клас
         {
-            Name = name;
             Sets = sets;
             Reps = reps;
             Weight = weight;
         }
 
-        /// <summary>
-        /// метод, който изчислява тренировъчния обем за това упражнение: sets * reps * weight
-        /// </summary>
-        /// <returns>Общия обем като число от тип double</returns>
-        public double GetVolume()
+        public override double GetVolume()
         {
-            double volume = Sets * Reps * Weight;
-            return volume;
+            return Sets * Reps * Weight;
         }
 
-        /// <summary>
-        /// ToString метод за преобразуване на резултата в текстов вид
-        /// използва се при показване на обекта в списъци в UI (примерно ListBox)
-        /// </summary>
-        /// <returns> 
-        /// низ във формата: "име - (серии)x(повторения) @ (тежест)kg" 
-        /// пример: "Bench Press - 4x8 @ 60kg"
-        /// </returns>
         public override string ToString()
         {
-            string description = Name + " - " + Sets + "x" + Reps + " @ " + Weight + "kg";
-            return description;
+            return $"{Name} (Strength) - {Sets}x{Reps} @ {Weight}kg";
+        }
+    }
+
+    /// <summary>
+    /// клас за кардио упражнения (продължителност)
+    /// може да има серии (напр. 3 рунда скачане на въже) или да е 1 серия (jogging)
+    /// </summary>
+    public class CardioExercise : Exercise
+    {
+        public double DurationMinutes { get; set; }
+        public int Sets { get; set; }
+
+        // конструктор с опция за серии (default е 1)
+        public CardioExercise(string name, double durationMinutes, int sets = 1)
+            : base(name)
+        {
+            DurationMinutes = durationMinutes;
+            Sets = sets;
+        }
+
+        public override double GetVolume()
+        {
+            // при кардио обемът обикновено е просто времето (или време * серии)
+            return DurationMinutes * Sets;
+        }
+
+        public override string ToString()
+        {
+            if (Sets > 1)
+            {
+                return $"{Name} (Cardio) - {Sets} sets x {DurationMinutes} min";
+            }
+            return $"{Name} (Cardio) - {DurationMinutes} min";
         }
     }
 }

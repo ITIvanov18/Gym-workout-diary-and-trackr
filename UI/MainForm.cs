@@ -94,20 +94,38 @@ namespace Gym_Workout_Diary___Tracker.UI
         /// </summary>
         private void CreateSampleEntries()
         {
-            WorkoutEntry monday = new WorkoutEntry(DateTime.Today, "Monday - Push", MuscleGroup.Push);
-            monday.Exercises.Add(new Exercise("Bench Press", 4, 8, 60));
-            monday.Exercises.Add(new Exercise("Shoulder Press", 3, 10, 30));
+            DateTime today = DateTime.Today;
+            // DayOfWeek връща enum (Sunday=0, Monday=1... Friday=5)
+            // вадим броя дни, за да се върнем до понеделник
+            // в C# неделя е начало на седмицата за Enum-а, но за нас е край)
+            int delta = DayOfWeek.Monday - today.DayOfWeek;
+            if (delta > 0) delta -= 7; // ако сме неделя, връщаме назад до предишния понеделник
+
+            DateTime mondayDate = today.AddDays(delta);
+
+            // тренировъчен ден 1 - понеделник (сила)
+            WorkoutEntry monday = new WorkoutEntry(mondayDate, "Monday - Push", MuscleGroup.Push);
+            monday.Exercises.Add(new StrengthExercise("Bench Press", 4, 8, 60));
+            monday.Exercises.Add(new StrengthExercise("Shoulder Press", 3, 10, 30));
             _diary.AddEntry(monday);
 
-            WorkoutEntry wednesday = new WorkoutEntry(DateTime.Today.AddDays(2), "Wednesday - Legs", MuscleGroup.Legs);
-            wednesday.Exercises.Add(new Exercise("Squat", 5, 5, 90));
-            wednesday.Exercises.Add(new Exercise("Leg Press", 4, 10, 120));
+            // тренировъчен ден 2 - сряда (сила)
+            WorkoutEntry wednesday = new WorkoutEntry(mondayDate.AddDays(2), "Wednesday - Legs", MuscleGroup.Legs);
+            wednesday.Exercises.Add(new StrengthExercise("Squat", 5, 5, 90));
+            wednesday.Exercises.Add(new StrengthExercise("Leg Press", 4, 10, 120));
             _diary.AddEntry(wednesday);
 
-            WorkoutEntry friday = new WorkoutEntry(DateTime.Today.AddDays(4), "Friday - Pull", MuscleGroup.Pull);
-            friday.Exercises.Add(new Exercise("Deadlift", 3, 5, 100));
-            friday.Exercises.Add(new Exercise("Barbell Row", 4, 8, 60));
+            // тренировъчен ден 3 - петък (сила)
+            WorkoutEntry friday = new WorkoutEntry(mondayDate.AddDays(4), "Friday - Pull", MuscleGroup.Pull);
+            friday.Exercises.Add(new StrengthExercise("Deadlift", 3, 5, 100));
+            friday.Exercises.Add(new StrengthExercise("Barbell Row", 4, 8, 60));
             _diary.AddEntry(friday);
+
+            // тренировъчен ден 4 - неделя (кардио и преса)
+            WorkoutEntry sunday = new WorkoutEntry(mondayDate.AddDays(6), "Sunday - Cardio", MuscleGroup.Other);
+            sunday.Exercises.Add(new CardioExercise("Treadmill Run", 30));
+            sunday.Exercises.Add(new CardioExercise("Rope Jumping", 2, 3));
+            _diary.AddEntry(sunday);
         }
 
         // -------------------- помощни методи за UI --------------------
@@ -278,7 +296,7 @@ namespace Gym_Workout_Diary___Tracker.UI
             }
 
             int index = selectedEntry.Exercises.Count + 1;
-            Exercise exercise = new Exercise("Sample Exercise " + index, 3, 10, 20);
+            Exercise exercise = new StrengthExercise("Sample Strength " + index, 3, 10, 20);
             selectedEntry.Exercises.Add(exercise);
 
             RefreshExerciseList();
