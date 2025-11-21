@@ -1,6 +1,6 @@
 ﻿using Gym_Workout_Diary___Tracker.Domain;
 using System;
-using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Gym_Workout_Diary___Tracker.UI
@@ -140,7 +140,11 @@ namespace Gym_Workout_Diary___Tracker.UI
         {
             listBoxEntries.Items.Clear();
 
-            foreach (WorkoutEntry entry in _diary.Entries)
+            // използвам LINQ за сортиране:
+            // OrderBy(x => x.Date) подрежда от най-стара към най-нова дата
+            var sortedList = _diary.Entries.OrderBy(x => x.Date).ToList();
+
+            foreach (WorkoutEntry entry in sortedList)
             {
                 listBoxEntries.Items.Add(entry);
             }
