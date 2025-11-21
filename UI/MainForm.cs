@@ -29,6 +29,8 @@ namespace Gym_Workout_Diary___Tracker.UI
             // и създава всички визуални елементи
             InitializeComponent();
 
+            labelOverallProgress.AutoSize = true;
+
             // празен дневник
             _diary = new WorkoutDiary();
 
@@ -145,7 +147,7 @@ namespace Gym_Workout_Diary___Tracker.UI
         }
 
         /// <summary>
-        // обновява списъка с упражнения за избрания ден и калкулира общия обем
+        /// обновява списъка с упражнения за избрания ден и калкулира общия обем;
         /// ако не е селектиран ден, нулира стойностите в UI
         /// </summary>
         private void RefreshExerciseList()
@@ -166,7 +168,15 @@ namespace Gym_Workout_Diary___Tracker.UI
 
             // изчисляване и визуализация на volume-a
             double volume = selectedEntry.GetTotalVolume();
-            labelVolumeValue.Text = volume.ToString("0.##");
+
+            // ако е кардио ден (MuscleGroup.Other), показваме "min", иначе "kg"
+            string unit = "kg";
+            if (selectedEntry.Type == MuscleGroup.Other)
+            {
+                unit = "min";
+            }
+
+            labelVolumeValue.Text = $"{volume:0.##} {unit}";
         }
 
         /// <summary>
@@ -351,6 +361,10 @@ namespace Gym_Workout_Diary___Tracker.UI
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
+        private void labelOverallProgress_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

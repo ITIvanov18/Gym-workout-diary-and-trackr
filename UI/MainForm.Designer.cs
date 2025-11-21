@@ -119,6 +119,7 @@
             this.labelOverallProgress.Size = new System.Drawing.Size(154, 35);
             this.labelOverallProgress.TabIndex = 8;
             this.labelOverallProgress.Text = "Overall progress: 0%";
+            this.labelOverallProgress.Click += new System.EventHandler(this.labelOverallProgress_Click);
             // 
             // labelVolumeCaption
             // 

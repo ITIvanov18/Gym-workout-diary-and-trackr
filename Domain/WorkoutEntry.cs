@@ -23,7 +23,7 @@ namespace Gym_Workout_Diary___Tracker.Domain
 
         public string Title { get; set; }
 
-        public MuscleGroup MuscleGroup { get; set; }
+        public MuscleGroup Type { get; set; }
 
         public WorkoutStatus Status { get; private set; }
 
@@ -43,11 +43,11 @@ namespace Gym_Workout_Diary___Tracker.Domain
         /// <param name="date">Датата на тренировката</param>
         /// <param name="title">Кратко заглавие на тренировката</param>
         /// <param name="muscleGroup">Основна мускулна група</param>
-        public WorkoutEntry(DateTime date, string title, MuscleGroup muscleGroup)
+        public WorkoutEntry(DateTime date, string title, MuscleGroup type)
         {
             Date = date;
             Title = title;
-            MuscleGroup = muscleGroup;
+            Type = type;
             Status = WorkoutStatus.Planned;
             Notes = String.Empty;
             Exercises = new List<Exercise>();
