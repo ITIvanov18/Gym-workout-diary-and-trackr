@@ -40,7 +40,7 @@
             this.labelOverallProgress = new System.Windows.Forms.Label();
             this.labelVolumeCaption = new System.Windows.Forms.Label();
             this.labelVolumeValue = new System.Windows.Forms.Label();
-            this.buttonShowStats = new System.Windows.Forms.Button();
+            this.buttonCalculateBMI = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listBoxEntries
@@ -142,14 +142,14 @@
             this.labelVolumeValue.TabIndex = 10;
             this.labelVolumeValue.Text = "0";
             // 
-            // buttonShowStats
+            // buttonCalculateBMI
             // 
-            this.buttonShowStats.Location = new System.Drawing.Point(823, 583);
-            this.buttonShowStats.Name = "buttonShowStats";
-            this.buttonShowStats.Size = new System.Drawing.Size(125, 39);
-            this.buttonShowStats.TabIndex = 11;
-            this.buttonShowStats.Text = "Show stats";
-            this.buttonShowStats.UseVisualStyleBackColor = true;
+            this.buttonCalculateBMI.Location = new System.Drawing.Point(785, 588);
+            this.buttonCalculateBMI.Name = "buttonCalculateBMI";
+            this.buttonCalculateBMI.Size = new System.Drawing.Size(180, 39);
+            this.buttonCalculateBMI.TabIndex = 11;
+            this.buttonCalculateBMI.Text = "Calculate your BMI";
+            this.buttonCalculateBMI.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -157,7 +157,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1028, 664);
-            this.Controls.Add(this.buttonShowStats);
+            this.Controls.Add(this.buttonCalculateBMI);
             this.Controls.Add(this.labelVolumeValue);
             this.Controls.Add(this.labelVolumeCaption);
             this.Controls.Add(this.labelOverallProgress);
@@ -190,6 +190,6 @@
         private System.Windows.Forms.Label labelOverallProgress;
         private System.Windows.Forms.Label labelVolumeCaption;
         private System.Windows.Forms.Label labelVolumeValue;
-        private System.Windows.Forms.Button buttonShowStats;
+        private System.Windows.Forms.Button buttonCalculateBMI;
     }
 }

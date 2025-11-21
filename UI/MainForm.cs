@@ -61,8 +61,8 @@ namespace Gym_Workout_Diary___Tracker.UI
             buttonAddExercise.Click += ButtonAddExercise_Click;
             btnRemoveExercise.Click += ButtonRemoveExercise_Click;
 
-            // статистика
-            buttonShowStats.Click += ButtonShowStats_Click;
+            // BMI калкулатор
+            buttonCalculateBMI.Click += ButtonCalculateBMI_Click;
         }
 
 
@@ -364,26 +364,14 @@ namespace Gym_Workout_Diary___Tracker.UI
         }
 
         /// <summary>
-        /// генерира и показва обобщена статистика (Total Volume и разпределение по дни) чрез MessageBox
+        /// отваря BMI калкулатора
         /// </summary>
-        private void ButtonShowStats_Click(object sender, EventArgs e)
+        private void ButtonCalculateBMI_Click(object sender, EventArgs e)
         {
-            double totalVolume = _diary.GetTotalVolume();
-            int[] counts = _diary.GetWorkoutsPerWeekday();
-
-            string message =
-                "Total volume in diary: " + totalVolume + Environment.NewLine +
-                "Workouts per weekday:" + Environment.NewLine +
-                "Mon: " + counts[0] + Environment.NewLine +
-                "Tue: " + counts[1] + Environment.NewLine +
-                "Wed: " + counts[2] + Environment.NewLine +
-                "Thu: " + counts[3] + Environment.NewLine +
-                "Fri: " + counts[4] + Environment.NewLine +
-                "Sat: " + counts[5] + Environment.NewLine +
-                "Sun: " + counts[6];
-
-            MessageBox.Show(message, "Diary statistics",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            using (BmiCalculatorForm form = new BmiCalculatorForm())
+            {
+                form.ShowDialog();
+            }
         }
 
         private void labelOverallProgress_Click(object sender, EventArgs e)

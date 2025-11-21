@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\BmiCalculatorService.cs" />
     <Compile Include="Domain\Exercise.cs" />
     <Compile Include="Domain\MuscleGroup.cs" />
     <Compile Include="Domain\Trackable.cs" />
@@ -66,6 +67,12 @@
     </Compile>
     <Compile Include="UI\AddWorkoutForm.Designer.cs">
       <DependentUpon>AddWorkoutForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UI\BmiCalculatorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UI\BmiCalculatorForm.Designer.cs">
+      <DependentUpon>BmiCalculatorForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UI\MainForm.cs">
       <SubType>Form</SubType>
