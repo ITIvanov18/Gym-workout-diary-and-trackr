@@ -14,9 +14,6 @@ namespace Gym_Workout_Diary___Tracker
     // File: Program.cs
     // ------------------------------------------------------------
 
-    /// <summary>
-    /// Main метод, от който стартира Windows Forms приложението
-    /// </summary>
     internal static class Program
     {
         [STAThread]
