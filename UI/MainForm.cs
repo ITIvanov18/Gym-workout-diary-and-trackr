@@ -233,15 +233,25 @@ namespace Gym_Workout_Diary___Tracker.UI
         /// </summary>
         private void ButtonAddEntry_Click(object sender, EventArgs e)
         {
-            int index = _diary.Entries.Count + 1;
-            DateTime date = DateTime.Today.AddDays(index);
-            string title = "Sample Day " + index;
+            // инстанция на формата
+            using (AddWorkoutForm form = new AddWorkoutForm())
+            {
+                // показва се като диалогов прозорец (блокира главния, докато не се затвори)
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // ако потребителят е натиснал OK, взимаме данните от формата
+                    WorkoutEntry newEntry = new WorkoutEntry(
+                        form.SelectedDate,
+                        form.WorkoutTitle,
+                        form.SelectedType
+                    );
 
-            WorkoutEntry entry = new WorkoutEntry(date, title, MuscleGroup.Other);
-            _diary.AddEntry(entry);
+                    _diary.AddEntry(newEntry);
 
-            RefreshEntryList();
-            UpdateOverallProgress();
+                    RefreshEntryList();
+                    UpdateOverallProgress();
+                }
+            }
         }
 
         /// <summary>
@@ -305,9 +315,20 @@ namespace Gym_Workout_Diary___Tracker.UI
                 return;
             }
 
-            int index = selectedEntry.Exercises.Count + 1;
-            Exercise exercise = new StrengthExercise("Sample Strength " + index, 3, 10, 20);
-            selectedEntry.Exercises.Add(exercise);
+            using (AddExerciseForm form = new AddExerciseForm())
+            {
+                if (form.ShowDialog() == DialogResult.OK)
+                {
+                    // Взимаме готовото упражнение (Cardio или Strength), което формата е създала
+                    Exercise newExercise = form.CreatedExercise;
+
+                    if (newExercise != null)
+                    {
+                        selectedEntry.Exercises.Add(newExercise);
+                        RefreshExerciseList();
+                    }
+                }
+            }
 
             RefreshExerciseList();
         }

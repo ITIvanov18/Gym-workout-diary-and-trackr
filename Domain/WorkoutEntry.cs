@@ -10,7 +10,6 @@ namespace Gym_Workout_Diary___Tracker.Domain
     // Student: Ivan Tenev Ivanov
     // Faculty Number: F115436
     // File: WorkoutEntry.cs
-    // Description: Domain model for a single workout diary entry.
     // ------------------------------------------------------------
 
     /// <summary>
